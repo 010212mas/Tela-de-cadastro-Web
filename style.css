@@ -33,3 +33,26 @@
         padding: 10px;
         border-radius: 4px;
     }
+
+    .msg {
+    min-height: 24px; /* reserva espaço */
+    margin-top: 10px;
+}
+
+.erro {
+    color: red;
+}
+
+.sucesso {
+    color: green;
+}
+
+/* Remove o botão nativo de mostrar senha (Edge/Chrome) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+input[type="password"]::-webkit-credentials-auto-fill-button {
+    display: none !important;
+}

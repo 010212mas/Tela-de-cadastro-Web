@@ -1,0 +1,89 @@
+<style>
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
+}
+.centraliza-vh {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bolinha-animada {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #0d6efd;
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce 0.7s infinite;
+}
+.msg {
+  margin-top: 15px;
+  font-weight: bold;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.msg2 {
+  margin-top: 15px;
+  font-weight: bold;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  animation-delay: 3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+</style>
+<div class="centraliza-vh">
+    <div class="text-center">
+        <span class="bolinha-animada"></span>
+            <span class="bolinha-animada" style="animation-delay: 0.2s;"></span>
+            <span class="bolinha-animada" style="animation-delay: 0.4s;"></span>
+            <br>
+            <div class="mt-3 msg">Cadastrando usuário padrão...</div>
+
+        <div class="mt-3 msg2">Redirecionando para o login...</div>
+    </div>
+</div>
+
+<script>
+    const exemplos = [
+        { usuario: 'Admin', email: 'admin@email.com', senha: '@Usuario321' },
+        { usuario: 'Caio', email: 'caio@email.com', senha: '@Usuario321' },
+        { usuario: 'Henedio', email: 'henedio@email.com', senha: '@Usuario321' },
+        { usuario: 'user', email: 'user@email.com', senha: '@Usuario321' },
+        { usuario: 'teste', email: 'teste@email.com', senha: '@Usuario321' }
+    ];
+    let usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+    let novos = 0;
+    exemplos.forEach(ex => {
+        if (!usuarios.some(u => u.email === ex.email)) {
+            usuarios.push(ex);
+            novos++;
+        }
+    });
+    if (novos > 0) {
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    }
+
+    setTimeout(() => {
+        window.location.href = 'login.html';
+    }, 5000);
+
+</script>

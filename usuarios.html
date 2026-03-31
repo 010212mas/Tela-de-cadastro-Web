@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn-janela {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--Visualizar Usuários-->
+
+    <div>
+        <h1>Usuários Cadastrados</h1>
+    </div>
+    <div id="listaUsuarios">
+        <div id="dadosUsuario" style="margin-top:20px;">
+            <script>
+                // Função para exibir todos os usuários cadastrados
+                function exibirTodosUsuarios() {
+                    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+                    const listaDiv = document.getElementById('listaUsuarios');
+                    if (usuarios.length === 0) {
+                        listaDiv.innerHTML = '<p>Nenhum usuário cadastrado.</p>';
+                        return;
+                    }
+                    let html = '<table border="1" cellpadding="5" style="border-collapse:collapse;">';
+                    html += '<tr><th>Usuário</th><th>E-mail</th></tr>';
+                    usuarios.forEach(u => {
+                        html += `<tr><td>${u.usuario}</td><td>${u.email}</td></tr>`;
+                    });
+                    html += '</table>';
+                    listaDiv.innerHTML = html;
+                }
+
+                // Chama a função ao carregar a página
+                window.onload = exibirTodosUsuarios;
+            </script>
+
+        </div>
+    </div>
+    <button class="btn-janela" onclick="window.location.href='cadastro.html'">Voltar para Cadastro</button>
+
+    </button>
+</body>
+
+</html>

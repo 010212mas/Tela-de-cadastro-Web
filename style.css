@@ -61,6 +61,24 @@
             border-radius: 10px;
             cursor: pointer;
         }
+                .btn-2{
+            width: 100%;
+            padding: 10px;
+            background-color: teal;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+                .btn-3{
+            width: 100%;
+            padding: 10px;
+            background-color: purple;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
         .msg {
             margin-top: 15px;
             padding: 10px;

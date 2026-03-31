@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Faça o seu Cadastro</h1>
+        <form id="formCadastro">
+            <label for="usuario">Usuário</label>
+            <input type="text" id="usuario" required>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" required>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" required minlength="5">
+            <button class="btn-login" type="submit">Cadastrar</button><br><br><br>
+            <button class="btn-janela" type="button" onclick="window.location.href='login.html'">Voltar para o
+                Login</button>
+        </form>
+        <div class="msg" id="mensagem"></div>
+    </div>
+    <script>
+        const form = document.getElementById('formCadastro');
+        const msg = document.getElementById('mensagem');
+
+        function erro(texto) {
+            msg.textContent = texto;
+            msg.className = 'msg erro';
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const usuario = document.getElementById('usuario').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value;
+
+            let usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+
+            // CAMPOS VAZIOS
+            if (!usuario || !email || !senha) return erro('Preencha todos os campos.');
+
+            // USUÁRIO
+            if (usuario.length < 3) return erro('Usuário muito curto.');
+            if (usuario.includes(' ')) return erro('Usuário não pode ter espaços.');
+
+            // EMAIL
+            if (email.includes(' ')) return erro('E-mail não pode ter espaços.');
+            if (!email.includes('@') || email.length < 5) return erro('E-mail inválido.');
+            if (!/\S+@\S+\.\S+/.test(email)) return erro('Formato de e-mail inválido.');
+            if (usuarios.some(u => u.email === email)) return erro('E-mail já cadastrado.');
+
+            // SENHA
+            if (senha.length < 5) return erro('Senha muito curta.');
+            if (senha.length > 30) return erro('Senha muito longa.');
+            if (senha.includes(' ')) return erro('Senha não pode ter espaços.');
+            if (!/\d/.test(senha)) return erro('Senha precisa de número.');
+            if (!/[A-Z]/.test(senha)) return erro('Senha precisa de letra maiúscula.');
+            if (!/[!@#$%^&*]/.test(senha)) return erro('Senha precisa de caractere especial.');
+            if (senha.toLowerCase().includes(usuario.toLowerCase()))
+                return erro('Senha não pode conter o usuário.');
+            if (senha.toLowerCase().includes(email.toLowerCase()))
+                return erro('Senha não pode conter o e-mail.');
+            if (['12345', 'senha', 'password', 'admin'].includes(senha.toLowerCase()))
+                return erro('Senha muito fraca.');
+
+            // SALVAR
+            usuarios.push({ usuario, email, senha });
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+            msg.innerHTML = 'Cadastro realizado com sucesso!<br><a href="login.html">Clique aqui para fazer login.</a>';
+            msg.className = 'msg sucesso';
+
+            form.reset();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testes de Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div>
+        <legend>
+            <h1>Faça o seu Login</h1>
+        </legend>
+
+        <form action="POST">
+            <label for="email">
+                <p>E-mail</p>
+            </label>
+
+            <input type="email" id="email" name="email" required>
+            <label for="senha">
+                <p>Senha</p>
+            </label>
+            <input type="password" id="senha" name="senha" required>
+            <br>
+            <button class="btn-login" type="submit">Entrar</button>
+            <br><br><br>
+            <button class="btn-janela" type="button" onclick="window.location.href='cadastro.html'">Cadastrar</button>
+        </form>
+    </div>
+    <script>
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio do formulário para outra tela
+
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+
+            //validação de login pelo localStorage
+            const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+            const usuarioEncontrado = usuarios.find(u => u.email === email && u.senha === senha);
+            if (usuarioEncontrado) {
+                alert('Login bem-sucedido!');
+                // Salva o usuário logado na sessão
+                sessionStorage.setItem('usuarioLogado', usuarioEncontrado.usuario);
+                // Redirecionar para a página principal ou dashboard
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Usuário ou senha incorretos!');
+            }
+        });
+    </script>
+</body>
+
+</html>

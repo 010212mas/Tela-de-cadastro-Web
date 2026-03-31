@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div>
+		<h1>Acesso realizado com sucesso</h1>
+		<div id="dadosUsuario"></div>
+		<button class="btn-sair" id="logout">Sair</button>
+		<br><br>
+		<button class="btn-janela" onclick="window.location.href='cadastro.html'">Ir para Cadastro</button>
+<br><br>
+ <button onclick="window.location.href='deletar.html'">Limpar Dados</button>
+	
+	</div>
+	<script>
+		// Recupera usuário logado do localStorage
+		function obterUsuarioLogado() {
+			// Recupera o último login realizado
+			const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+			const nome = sessionStorage.getItem('usuarioLogado');
+			if (!nome) return null;
+			return usuarios.find(u => u.usuario === nome);
+		}
+
+		// Exibe os dados do usuário logado
+		function exibirDadosUsuario() {
+			const usuario = obterUsuarioLogado();
+			const div = document.getElementById('dadosUsuario');
+			if (usuario) {
+				div.innerHTML = `<p><strong>Usuário:</strong> ${usuario.usuario}</p><p><strong>E-mail:</strong> ${usuario.email}</p>`;
+			} else {
+				div.innerHTML = '<p>Usuário não autenticado. <a href="login.html">Faça login</a>.</p>';
+				document.getElementById('logout').style.display = 'none';
+			}
+		}
+
+		// Logout
+		document.getElementById('logout').onclick = function() {
+			sessionStorage.removeItem('usuarioLogado');
+			window.location.href = 'login.html';
+		};
+		//limpar dados do localStorage para testes
+		//localStorage.removeItem('usuarios');
+
+		exibirDadosUsuario();
+	</script>
+
+</body>
+</html>

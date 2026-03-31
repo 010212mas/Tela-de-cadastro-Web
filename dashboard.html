@@ -1,24 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Dashboard</title>
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body>
-	<div>
-		<h1>Acesso realizado com sucesso</h1>
-		<div id="dadosUsuario"></div>
-		<button class="btn-sair" id="logout">Sair</button>
-		<br><br>
-		<button class="btn-janela" onclick="window.location.href='cadastro.html'">Ir para Cadastro</button>
-<br><br>
- <button class="btn-2" onclick="window.location.href='deletar.html'">Limpar Dados</button>
- <br><br>
- <button class="btn-3" onclick="window.location.href='usuarios.html'">Visualizar Usuários</button>
-	
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-sm-6 card mt-4 p-4">
+				<h3>Acesso realizado com sucesso</h3>
+				<div id="dadosUsuario"></div>
+				<button class="btn btn-danger mt-3" id="logout">Sair</button>
+
+				<button class="btn btn-secondary mt-3" onclick="window.location.href='deletar.html'">Limpar Dados</button>
+
+				<button class="btn btn-info mt-3" onclick="window.location.href='usuarios.html'">Visualizar Usuários</button>
+
+			</div>
+		</div>
+	</div>
+
+
 	</div>
 	<script>
 		// Recupera usuário logado do localStorage
@@ -43,7 +51,7 @@
 		}
 
 		// Logout
-		document.getElementById('logout').onclick = function() {
+		document.getElementById('logout').onclick = function () {
 			sessionStorage.removeItem('usuarioLogado');
 			window.location.href = 'login.html';
 		};
@@ -54,4 +62,5 @@
 	</script>
 
 </body>
+
 </html>

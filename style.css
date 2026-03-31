@@ -1,86 +1,35 @@
+    body {
+        background-color: #202020;
+        color: white
+    }
 
-        body {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Courier New', Courier, monospace;
+        margin-bottom: 20px;
+    }
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
 
-        div {
-            background-color: #fff;
-            padding: 50px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
 
-        h1,h2,h3,h4,h5,h6 {
-            font-family: 'Courier New', Courier, monospace;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        input[type="password"],
-        input[type="email"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .btn-login {
-            width: 100%;
-            padding: 10px;
-            background-color: green;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .btn-sair{
-            width: 100%;
-            padding: 10px;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .btn-janela{
-            width: 100%;
-            padding: 10px;
-            background-color: blue;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-                .btn-2{
-            width: 100%;
-            padding: 10px;
-            background-color: teal;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-                .btn-3{
-            width: 100%;
-            padding: 10px;
-            background-color: purple;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .msg {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 4px;
-        }
+    .msg {
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 4px;
+    }

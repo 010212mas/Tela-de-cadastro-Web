@@ -25,6 +25,10 @@
                         <label for="senha" class="form-label">Senha</label>
                         <input type="password" id="senha" name="senha" class="form-control" required>
                     </div>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" id="toggleSenha">
+                        <label class="form-check-label" for="toggleSenha">Mostrar senha</label>
+                    </div>
                     <button class="btn btn-primary w-100 mb-2" type="submit">Entrar</button>
                     <button class="btn btn-secondary w-100" type="button"
                         onclick="window.location.href='cadastro.html'">Cadastrar</button>
@@ -33,6 +37,13 @@
         </div>
     </div>
     <script>
+
+        document.getElementById('toggleSenha').addEventListener('change', function () {
+            const input = document.getElementById("senha");
+            input.type = this.checked ? "text" : "password";
+        });
+
+
         const form = document.querySelector('form');
 
         form.addEventListener('submit', function (event) {

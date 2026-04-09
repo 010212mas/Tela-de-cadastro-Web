@@ -72,8 +72,8 @@ describe('Cadastro - validações de reprovação', () => {
         },
         {
             nome: 'reprova senha sem número',
-            overrides: { usuario: 'Henedio', email: 'henedio@gmail.com', senha: 'Senhasemnumero@' },
-            mensagem: 'Senha precisa de número.',
+            overrides: { usuario: 'Henedio', email: 'henediowoawod@gmail.com', senha: 'Senhasem@' },
+            mensagem: 'Senha precisa de número',
         },
         {
             nome: 'reprova senha sem maiúscula',
@@ -106,12 +106,12 @@ describe('Cadastro - validações de reprovação', () => {
     cenarios.forEach(({ nome, overrides, mensagem }) => {
         it(nome, () => {
             tentarCadastro(overrides);
-
+            
             cy.get('#mensagem').should('contain.text', mensagem);
             cy.get('#mensagem').should('have.class', 'erro');
             cy.window().then((win) => {
                 const usuarios = JSON.parse(win.localStorage.getItem('usuarios') || '[]');
-
+            
                 expect(usuarios).to.have.length(5);
             });
         });

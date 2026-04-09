@@ -11,6 +11,7 @@ Cypress.Commands.add('visitarComUsuarios', (pagina = 'login.html', usuarios = us
 		onBeforeLoad(win) {
 			win.localStorage.setItem('usuarios', JSON.stringify(usuarios));
 			win.sessionStorage.clear();
+			win.alert = () => {};
 		},
 	});
 });

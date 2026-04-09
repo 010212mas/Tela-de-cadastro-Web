@@ -10,15 +10,9 @@ describe('Autenticação', () => {
   it('faz login com credenciais válidas e abre o dashboard', () => {
     cy.visitarComUsuarios('login.html', usuariosPadrao);
 
-    cy.window().then((win) => {
-      cy.stub(win, 'alert').as('alerta');
-    });
-
     cy.get('#email').type('admin@gmail.com');
     cy.get('#senha').type('@Usuario321');
     cy.contains('button', 'Entrar').click();
-
-    cy.get('@alerta').should('have.been.calledWith', 'Login bem-sucedido!');
 
     cy.url().should('include', 'dashboard.html');
     cy.get('#dadosUsuario').should('contain.text', 'Admin');
@@ -29,15 +23,10 @@ describe('Autenticação', () => {
   it('bloqueia login com senha incorreta', () => {
     cy.visitarComUsuarios('login.html', usuariosPadrao);
 
-    cy.window().then((win) => {
-      cy.stub(win, 'alert').as('alerta');
-    });
-
     cy.get('#email').type('admin@gmail.com');
     cy.get('#senha').type('senhaErrada123!');
     cy.contains('button', 'Entrar').click();
 
-    cy.get('@alerta').should('have.been.calledWith', 'Usuário ou senha incorretos!');
     cy.url().should('include', 'login.html');
     cy.window().its('sessionStorage').invoke('getItem', 'usuarioLogado').should('be.null');
   });

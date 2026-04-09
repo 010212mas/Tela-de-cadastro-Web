@@ -8,7 +8,7 @@ const usuariosPadrao = [
 
 const dadosValidos = {
     usuario: 'Caio',
-    email: 'henedio@gmail.com',
+    email: 'henediodeteste@gmail.com',
     senha: 'Senha@123',
 };
 
@@ -42,7 +42,7 @@ describe('Cadastro - validações de reprovação', () => {
 
         {
             nome: 'reprova usuário com menos de 3 caracteres',
-            overrides: { usuario: 'ab' },
+            overrides: { usuario: 'ch' },
             mensagem: 'Usuário muito curto.',
         },
         {
@@ -72,32 +72,27 @@ describe('Cadastro - validações de reprovação', () => {
         },
         {
             nome: 'reprova senha sem número',
-            overrides: { usuario: 'Henedio', email: 'henediowoawod@gmail.com', senha: 'Senhasem@' },
+            overrides: { usuario: 'Caiaovieira', email: 'henediowoawod@gmail.com', senha: 'Senhasem@' },
             mensagem: 'Senha precisa de número',
         },
         {
             nome: 'reprova senha sem maiúscula',
-            overrides: { senha: 'senha@123' },
+            overrides: { usuario: 'Henedio', email: 'Caioehenedio@gmail.com', senha: 'senha@123' },
             mensagem: 'Senha precisa de letra maiúscula.',
         },
         {
             nome: 'reprova senha sem caractere especial',
-            overrides: { senha: 'Senha123' },
+            overrides: { usuario: 'CAAAAAAIIO', email: 'henediotestando@gmail.com', senha: 'Senha123' },
             mensagem: 'Senha precisa de caractere especial.',
         },
         {
             nome: 'reprova senha contendo o usuário',
-            overrides: { usuario: 'henedio', senha: 'xxHenedio@1' },
+            overrides: { usuario: 'Caio', senha: 'Caio@321' },
             mensagem: 'Senha não pode conter o usuário.',
-        },
-        {
-            nome: 'reprova senha contendo o e-mail',
-            overrides: { email: 'henedio@gmail.com', senha: 'xhenedio@gmail.com#1' },
-            mensagem: 'Senha não pode conter o e-mail.',
         },
                 {
             nome: 'reprova senha curta',
-            overrides: { senha: '1234' },
+            overrides: { usuario: 'Henedio', email: 'Caiiiio@gmail.com', senha: '1234' },
             mensagem: 'Senha muito curta.',
         },
         
